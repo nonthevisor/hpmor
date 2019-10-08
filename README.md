@@ -1,5 +1,11 @@
 # Harry Potter and the Methods Of Rationality
 
+## Fork features
+This fork features modified dust-jackets to include: 
+
+* A short bio of Eliezer Yudkowsky taken from [Wikipedia](https://en.wikipedia.org/wiki/Eliezer_Yudkowsky) as back flap text
+* The respective book descriptions taken from [LessWrong](https://www.lesswrong.com/hpmor) as back cover texts
+
 https://github.com/rjl20/hpmor  
 Maintainer: Reuben Thomas <rrt@sc3d.org>
 
