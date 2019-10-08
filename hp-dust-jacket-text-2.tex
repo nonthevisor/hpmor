@@ -1,0 +1,77 @@
+\input{hp-paper-type}
+
+% N.B. All text and images should be 6mm away from all edges
+\newcounter{bookpagecount}
+\setcounter{bookpagecount}{\XeTeXpdfpagecount"\bookfile"}
+\RequirePackage{calc} % This line must be after the previous to avoid an error
+\newlength{\hppaperwidth} % no. of pages ÷ 2 × width per sheet
+\setlength{\hppaperwidth}{\bookpaper * \value{bookpagecount} / \real{2.0}}
+\newlength{\hpspinewidth} % paper thickness + 5mm
+\setlength{\hpspinewidth}{\hppaperwidth + 5mm}
+\makeatletter
+\setbox\z@=\hbox{\XeTeXpdffile"\bookfile"\relax}
+\newlength{\hpcoverwidth} % paper width + 8mm
+\setlength{\hpcoverwidth}{\the\wd\z@ + 8mm}
+\newlength{\hpcoverheight} % coverheight: paper height + 1mm
+\setlength{\hpcoverheight}{\the\ht\z@ + 1mm}
+\makeatother
+% flapwidth: 60mm+3mm each side
+\documentclass[12pt,coverwidth=\the\hpcoverwidth,coverheight=\the\hpcoverheight,spinewidth=\the\hpspinewidth,marklength=0mm,bleedwidth=5mm,flapwidth=63mm]{bookcover}
+
+\input{hp-header}
+
+\usepackage{contour}
+
+\input{hp-title}
+
+\begin{document}
+{
+\setbookcover{bgcolor}{whole}{color=black}
+\setbookcover{fgfirst}{remark}{
+\bfseries\color{blue}DUST JACKET}
+\setbookcover{bgpic}{front}{cover0.jpg}
+\setbookcover{fgfirst}{front}{\hptitle[\coverwidth]{\fullvolumetitle{\volumenumber}}}
+
+% Spine
+\setbookcover{fgfirst}{spine}{
+\centering
+\color{white}\scshape
+\vspace{0.5cm}\huge \volumenumber\\[2ex]\Large
+\vfill
+\rotatebox[origin=c]{90}{\contour[120]{black}{\volumetitle}}
+\vfill}
+
+% Back cover
+\setbookcover{fgfirst}{back}{
+  \centering
+  \vspace{20mm}
+  \parbox{110mm}{\color{white}\Large\raggedright
+"Hey, did you think going to the Moon was easy? Be glad this just involves changing your mind sometimes, and not a human sacrifice!" \par
+
+"Human sacrifice would be way easier!" \par 
+
+There was a slight pause, and then the figure nodded. "Fair point." \par
+
+\raggedleft{- Harry and Draco discuss learning science}
+}}
+
+% Text on the front flap
+\setbookcover{fgfirst}{front flap}{
+\centering
+\vspace{20mm}
+\parbox{40mm}{\color{white}\raggedright\small
+  HPMOR comes from the world of fan-fiction. With J.~K.~Rowling’s approval, it tells the story of an alternate Harry, an auto-didact rationalist who brings all his powers to bear on the strange new vistas of the world of magic.
+
+  \bigskip The books introduce the reader to the ways of thinking Yudkowsky lays out in his blog, \url{lesswrong.com}.}}
+
+% Text on the back flap
+\setbookcover{fgfirst}{back flap}{
+\centering
+\vspace{20mm}
+\parbox{40mm}{\color{white}\small\raggedright
+  Eliezer Shlomo Yudkowsky (born September 11, 1979) is an American AI researcher and writer best known for popularising the idea of friendly artificial intelligence. He is a co-founder and research fellow at the Machine Intelligence Research Institute (MIRI), a private research nonprofit based in Berkeley, California. His work on the prospect of a runaway intelligence explosion was an influence on Nick Bostrom's \textit{Superintelligence: Paths, Dangers, Strategies.}
+}}
+
+\makebookcover
+}
+\end{document}
